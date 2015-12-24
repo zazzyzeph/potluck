@@ -92,7 +92,28 @@ guestsRouter.post('/', function(req,res){
             else
                 return res.send(err);
         }
-        res.render('usercreated');
+        else{
+            res.render('usercreated');
+            // NODEMAILER
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    user: 'thewhistlego@gmail.com',
+                    pass: 'w00pw00p!'
+                }
+            }, {
+                // default values for sendMail method
+                from: 'thewhistlego@gmail.com',
+                headers: {
+                    // 'My-Awesome-Header': '123'
+                }
+            });
+            transporter.sendMail({
+                to: user.email,
+                subject: 'hello ' + user.name,
+                text: 'hi! here\'s your link for adding / modifying your potluck items: http://localhost:1337/guests/' + user._id
+            });
+        }
     });
 });
 
@@ -106,27 +127,6 @@ guestsRouter.post('/', function(req,res){
 app.use('/guests', guestsRouter);
 app.listen(port);
 console.log('localhost:' + port + ' for the homepage, /guests for the api!');
-
-// NODEMAILER
-// ========================
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'thewhistlego@gmail.com',
-        pass: 'w00pw00p!'
-    }
-}, {
-    // default values for sendMail method
-    from: 'thewhistlego@gmail.com',
-    headers: {
-        // 'My-Awesome-Header': '123'
-    }
-});
-// transporter.sendMail({
-//     to: 'zephyr.prusinski@gmail.com',
-//     subject: 'hello',
-//     text: 'hello world!'
-// });
 
 
 //  FLOW
