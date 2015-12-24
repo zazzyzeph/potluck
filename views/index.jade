@@ -1,0 +1,13 @@
+- var pageTitle = "Sam n Zeph's Potluck"
+doctype html
+html(lang="en")
+head
+	title= pageTitle
+body
+	h1 Email Submit Form
+	p.
+		submit yr email and name
+	form(method="post")
+		input(type="text", name="name")
+		input(type="text", name="email")
+		button(type="submit", action="http://localhost:1337/")
