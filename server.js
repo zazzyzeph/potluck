@@ -14,7 +14,6 @@ var nodemailer = require('nodemailer');
 var port = process.env.PORT || 1337;
 
 
-
 // APP CONFIG
 // =======================
 
