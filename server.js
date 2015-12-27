@@ -47,6 +47,7 @@ mongoose.connect('mongodb://localhost:27017/userDB');
 
 // load models
 var User = require('./models/guest');
+var Item = require('./models/guest');
 
 // api router (for posts / delete)
 var guestsRouter = express.Router();
@@ -64,7 +65,7 @@ app.get('/', function(req, res){
 guestsRouter.get('/', function(req,res){
      User.find(function(err, users){
         if (err) res.send(err);
-        // return users
+        console.log(users);
         res.json(users);
     });
 });
@@ -75,8 +76,46 @@ guestsRouter.get('/:user_id', function(req,res){
     if (err) res.send(err);
 
     //return that user!
-    res.json(user);
+    res.render('potluckform');
     });
+});
+guestsRouter.get('/:user_id/items', function(req,res){
+    // get the user with that id
+    // GET at the uri above ;)
+    User.findById(req.params.user_id, function(err, user){
+    if (err) res.send(err);
+
+    //return that user!
+    res.json(user.items);
+    });
+});
+guestsRouter.post('/:user_id', function(req,res){
+    User.findById(req.params.user_id, function(err, user){
+        var item = new Item();
+        item.name = req.body.name;
+        item.type = req.body.type;
+        item.servings = req.body.servings;
+        item.allergies = req.body.allergies;
+        item.notes = req.body.notes;
+        user.items.push({
+            name:item.name,
+            type:item.type,
+            servings:item.servings,
+            allergies:item.allergies,
+            notes:item.notes
+        });
+        user.save(function(err){
+
+            if (err){
+                // if duplicate
+                if (err.code == 11000)
+                    return res.json({success:false, message: 'Sorry, you can\'t have duplicate item names.'});
+                else
+                    return res.send(err);
+            }
+        });
+    });
+    
 });
 guestsRouter.post('/', function(req,res){
     var user = new User();
