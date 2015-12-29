@@ -47,7 +47,7 @@ mongoose.connect('mongodb://localhost:27017/userDB');
 
 // load models
 var User = require('./models/guest');
-var Item = require('./models/guest');
+
 
 // api router (for posts / delete)
 var guestsRouter = express.Router();
@@ -91,27 +91,28 @@ guestsRouter.get('/:user_id/items', function(req,res){
 });
 guestsRouter.post('/:user_id', function(req,res){
     User.findById(req.params.user_id, function(err, user){
-        var item = new Item();
-        item.name = req.body.name;
-        item.type = req.body.type;
-        item.servings = req.body.servings;
-        item.allergies = req.body.allergies;
-        item.notes = req.body.notes;
+        name = req.body.name;
+        type = req.body.type;
+        servings = req.body.servings;
+        allergies = req.body.allergies;
+        notes = req.body.notes;
         user.items.push({
-            name:item.name,
-            type:item.type,
-            servings:item.servings,
-            allergies:item.allergies,
-            notes:item.notes
+            name:name,
+            type:type,
+            servings:servings,
+            allergies:allergies,
+            notes:notes
         });
         user.save(function(err){
-
             if (err){
                 // if duplicate
                 if (err.code == 11000)
                     return res.json({success:false, message: 'Sorry, you can\'t have duplicate item names.'});
                 else
                     return res.send(err);
+            }
+            else{
+                res.json(user.items);
             }
         });
     });

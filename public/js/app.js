@@ -14,17 +14,36 @@ indexValidation.controller('mainController', function($scope) {
 	};
 });
 
+potluckValidation.controller('ObjectArrayCtrl', ['$scope', 'filterFilter', function ObjectArrayCtrl($scope, filterFilter) {
+	$scope.allergies = [
+		{ name:'Non-Vegan', selected:false },
+		{ name:'Non-Vegetarian', selected:false },
+		{ name:'Dairy', selected:false },
+		{ name:'Nuts', selected:false },
+		{ name:'Gluten', selected:false },
+		{ name:'Egg', selected:false },
+		{ name:'Tropical Fruit', selected:false }
+	];
+
+	$scope.selection = [];
+
+	 // helper method to get selected allergies
+	 $scope.selectedAllergies = function selectedAllergies() {
+	 	return filterFilter($scope.allergies, { selected: true });
+	 };
+
+	// watch allergies for changes
+	$scope.$watch('allergies|filter:{selected:true}', function (nv) {
+		$scope.selection = nv.map(function (allergy) {
+			return allergy.name;
+		});
+		console.log($scope.allergies);
+	}, true);
+}]);
+
 // create angular controller
 potluckValidation.controller('potluckController', function($scope) {
-	$scope.allergies = [
-		'Non-Vegan', 
-		'Non-Vegetarian', 
-		'Dairy', 
-		'Nuts',
-		'Gluten',
-		'Egg',
-		'Tropical Fruit'
-	];
+
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function() {
 		// check to make sure the form is completely valid
