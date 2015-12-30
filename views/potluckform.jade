@@ -24,7 +24,7 @@ html(lang="en")
                   option(value='foodMeat') Meat Dish
                   option(value='foodVeggie') Veggie Dish
                   option(value='foodRice') Rice Dish
-                  option(value='fooddD  essert') Dessert
+                  option(value='foodDessert') Dessert
                 p.help-block(ng-show='potluckForm.type.$invalid && !potluckForm.type.$pristine') Enter a valid email.
               // SERVINGS
               .form-group(ng-class="{ 'has-error' : potluckForm.servings.$invalid && !potluckForm.servings.$pristine }")
@@ -47,12 +47,14 @@ html(lang="en")
               // ALLERGIES
               .form-group
                 label Allergies / Warnings
-                div(ng-controller="ObjectArrayCtrl")
-                  div(ng-repeat='allergy in allergies')
-                    label {{allergy.name}}
-                        input(type='checkbox', name='{{allergy.name}}' value="{{allergy.name}}" ng-model='potluck.allergies')
+                div(ng:controller="AllergyArray")
+                  div(ng-repeat='(allergy, enabled) in allergies')
+                    label
+                        input(type='checkbox', ng-model='potluckForm.allergies[allergy]')
+                        {{allergy}}
               // Notes
               .form-group
                 label Item Notes
                 input.form-control(type='text', name='notes', ng-model='potluck.notes')
               button.btn.btn-primary(type='submit', ng-disabled='potluckForm.$invalid') Submit
+              {{ potluckForm.allergies }}
