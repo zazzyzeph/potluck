@@ -14,30 +14,26 @@ indexValidation.controller('mainController', function($scope) {
 	};
 });
 
-potluckValidation.controller('AllergyArray', function($scope){
-	$scope.allergies = {
-		'Non-Vegan': false,
-		'Non-Vegetarian': false,
-		'Dairy': false,
-		'Nuts': false,
-		'Gluten': false,
-		'Egg': false,
-		'Tropical Fruit': false
-	};
-});
 
 
 
 
 // create angular controller
 potluckValidation.controller('potluckController', function($scope) {
-
-	// function to submit the form after all validation has occurred			
+	// function to submit the form after all validation has occurred
+	$scope.allergies = [
+		{name:'Non-Vegan', selected:false},
+		{name:'Non-Vegetarian', selected:false},
+		{name:'Dairy', selected:false},
+		{name:'Nuts', selected:false},
+		{name:'Gluten', selected:false},
+		{name:'Egg', selected:false},
+		{name:'Tropical Fruit', selected:false}
+	];		
 	$scope.submitForm = function() {
 		// check to make sure the form is completely valid
 		if (!($scope.potluckForm.$valid)) {
 			alert('form is invalid. stop trying to hack my site.');
 		}
 	};
-	
 });
