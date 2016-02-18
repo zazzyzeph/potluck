@@ -48,10 +48,10 @@ html(lang="en")
               // ALLERGIES
               .form-group
                 label Allergies / Warnings
-                  div(ng-repeat='allergy in allergies')
+                  div(ng-repeat='(allergy, selected) in allergies')
                     label
-                        input(type='checkbox', value='{{allergy.name}}', ng-model='allergy.selected')
-                        {{allergy.name}}
+                      input(type='checkbox', value='{{allergy}}', ng-model='allergies[allergy]', ng-change="sync(potluckForm.allergies, allergies)")
+                      {{allergy}}
                   {{ allergies }}
               // Notes
               .form-group

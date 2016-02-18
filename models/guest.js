@@ -6,7 +6,7 @@ var ItemSchema = new Schema({
 	name: { type: String, required: true, index: {unique : true}},
 	type: { type: String, required: true},
 	servings: { type: Number, required: true},
-	allergies: { type: Array, required: false},
+	allergies: { type: Object, required: false},
 	notes: { type: String, required: false}
 });
 

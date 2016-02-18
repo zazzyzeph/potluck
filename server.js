@@ -1,4 +1,4 @@
-// the db is local so do mongod --dbpath data/db in a terminal
+// the db is local so do mongod --dbpath data/db in a terminal before starting
 
 // BASE SETUP
 // =======================
