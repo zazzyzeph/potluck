@@ -9,11 +9,11 @@ html(lang="en")
             // FORM ============
             form(name='potluckForm', ng-submit='submitForm()', novalidate='', method='post' action='')
               // NAME
+
               .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
-                ng-form(name='potluckName')
-                  label Item Name
-                  input.form-control(type='text', name='name', ng-model='potluck.name', required='')
-                  p.help-block(ng-show='potluckName.$invalid && !potluckName.$pristine') Item Name is required.
+                label Item Name
+                input.form-control(type='text', name='name', ng-model='potluck.name', required='')
+                p.help-block(ng-show='potluckForm.name.$invalid && !potluckForm.name.$pristine') Item Name is required.
               // FOOD TYPE
               .form-group(ng-class="{ 'has-error' : potluckForm.type.$invalid && !potluckForm.type.$pristine }")
                 label Item Type
@@ -46,13 +46,13 @@ html(lang="en")
                   option(value='150') 150+
                 p.help-block(ng-show='potluckForm.servings.$invalid && !potluckForm.servings.$pristine') Enter a valid email.
               // ALLERGIES
+              label Allergies / Warnings
               .form-group
-                label Allergies / Warnings
-                  div(ng-repeat='(allergy, selected) in allergies')
-                    label
-                      input(type='checkbox', value='{{allergy}}', ng-model='allergies[allergy]', ng-change="sync(potluckForm.allergies, allergies)")
-                      {{allergy}}
-                  {{ allergies }}
+                div(ng-repeat='(allergy, selected) in potluck.allergies')
+                  label
+                    input(type='checkbox', value='{{allergy}}', ng-model='potluck.allergies[allergy]' ng-change='sync(allergies, potluck.allergies)')
+                    {{allergy}}
+                {{ allergies }}
               // Notes
               .form-group
                 label Item Notes

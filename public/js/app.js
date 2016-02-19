@@ -20,8 +20,14 @@ indexValidation.controller('mainController', function($scope) {
 
 // create angular controller
 potluckValidation.controller('potluckController', function($scope) {
-	// function to submit the form after all validation has occurred
-	$scope.allergies = 
+	$scope.potluck = {
+		name:"",
+		type:"",
+		servings:0,
+		allergies:{},
+		notes:""
+	};
+	$scope.potluck.allergies = 
 		{
 		'Non-Vegan':false,
 		'Non-Vegetarian':false,
@@ -31,6 +37,7 @@ potluckValidation.controller('potluckController', function($scope) {
 		'Egg':false,
 		'Tropical Fruit':false};		
 	$scope.submitForm = function() {
+		// function to submit the form after all validation has occurred
 		// check to make sure the form is completely valid
 		if (!($scope.potluckForm.$valid)) {
 			alert('form is invalid. stop trying to hack my site.');
