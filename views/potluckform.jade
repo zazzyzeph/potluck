@@ -9,7 +9,7 @@ html(lang="en")
             // FORM ============
             form(name='potluckForm', ng-submit='submitForm()', novalidate='', method='post' action='')
               // NAME
-
+              // insert ng-form here
               .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
                 label Item Name
                 input.form-control(type='text', name='name', ng-model='potluck.name', required='')
@@ -50,13 +50,16 @@ html(lang="en")
               .form-group
                 div(ng-repeat='(allergy, selected) in potluck.allergies')
                   label
-                    input(type='checkbox', value='{{allergy}}', ng-model='potluck.allergies[allergy]' ng-change='sync(allergies, potluck.allergies)')
-                    {{allergy}}
-                {{ allergies }}
+                    input(type='checkbox', value='{{allergy}}', ng-model='potluck.allergies[allergy]' ng-change='sync(allergies, potluck.allergies)').
+                    span {{ allergy }}
+                p.
+                  {{ allergies }}
               // Notes
               .form-group
                 label Item Notes
                 input.form-control(type='text', name='notes', ng-model='potluck.notes')
-              button.btn.btn-primary(type='submit', ng-disabled='potluckForm.$invalid') Submit
-              {{ potluck }}
+              button(ng-disabled='potluckForm.$invalid', ng-click='submit()' href="#" onclick="return false;").
+                Submit
+              p.
+                {{ potluck }}
               
