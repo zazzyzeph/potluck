@@ -17,17 +17,24 @@ indexValidation.controller('mainController', function($scope) {
 // create angular controller
 potluckValidation.controller('potluckController', function($scope, $http, $location) {
 	$http.get($location.absUrl() + '/items').then(function successCallback(res){
-		$scope.items = res.data;
+		console.log(res.data);
+		if (res.data.length){
+			$scope.items = res.data;
+		}
+		else{
+			$scope.items = [{
+							name:"",
+							type:"",
+							servings:0,
+							allergies:{'Non-Vegan':false,'Non-Vegetarian':false,'Dairy':false,'Nuts':false,'Gluten':false,'Egg':false,'Tropical Fruit':false},
+							notes:""
+						}];
+		}
+
 	}, function errorCallback(res){
-		$scope.items = {
-		name:"",
-		type:"",
-		servings:0,
-		allergies:{'Non-Vegan':false,'Non-Vegetarian':false,'Dairy':false,'Nuts':false,'Gluten':false,'Egg':false,'Tropical Fruit':false},
-		notes:""
-	};
+		console.log('boo!');
 	});
-		
+
 	$scope.submitForm = function() {
 		// function to submit the form after all validation has occurred
 		// check to make sure the form is completely valid

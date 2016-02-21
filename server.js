@@ -125,7 +125,7 @@ guestsRouter.post('/', function(req,res){
                 service: 'gmail',
                 auth: {
                     user: 'thewhistlego@gmail.com',
-                    pass: 'w00pw00p!'
+                    // pass: 'skeleotp'
                 }
             }, {
                 // default values for sendMail method

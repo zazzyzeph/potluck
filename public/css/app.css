@@ -1,6 +1,8 @@
 /* Fool-proof @font-face */
 body {
-  background-color: #97AAF1; }
+  background-color: #025373;
+  font: normal lighter 14px/18px "Noto Sans", "Helvetica Neue", sans-serif;
+  color: white; }
 
 h1 {
   color: #BDD959; }
