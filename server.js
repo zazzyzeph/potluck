@@ -49,7 +49,7 @@ mongoose.connect('mongodb://localhost:27017/userDB');
 var User = require('./models/guest');
 
 
-// api router (for posts / delete)
+// api router
 var guestsRouter = express.Router();
 guestsRouter.use(function(req, res, next){
     // log a dumb message on request
@@ -71,38 +71,25 @@ guestsRouter.get('/', function(req,res){
 });
 guestsRouter.get('/:user_id', function(req,res){
     // get the user with that id
-    // GET at the uri above ;)
     User.findById(req.params.user_id, function(err, user){
     if (err) res.send(err);
 
-    //return that user!
+    //return their potluckform
     res.render('potluckform');
     });
 });
 guestsRouter.get('/:user_id/items', function(req,res){
     // get the user with that id
-    // GET at the uri above ;)
     User.findById(req.params.user_id, function(err, user){
     if (err) res.send(err);
 
-    //return that user!
+    //return items json (array of objects)
     res.json(user.items);
     });
 });
 guestsRouter.post('/:user_id', function(req,res){
     User.findById(req.params.user_id, function(err, user){
-        name = req.body.name;
-        type = req.body.type;
-        servings = req.body.servings;
-        allergies = req.body.allergies;
-        notes = req.body.notes;
-        user.items.push({
-            name:name,
-            type:type,
-            servings:servings,
-            allergies:allergies,
-            notes:notes
-        });
+        user.items = req.body;
         user.save(function(err){
             if (err){
                 // if duplicate
