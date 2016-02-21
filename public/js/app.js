@@ -51,6 +51,12 @@ potluckValidation.controller('potluckController', function($scope, $http, $locat
 		});
 	}
 	fetch();
+	$http.get($location.absUrl() + '/items').then(function(response){
+		$scope.items = response.data;
+	});
+	$scope.nix = function(index){
+		$scope.items.splice(index,1);
+	}
 	$scope.submit = function(){
 		$http.post($location.absUrl(), $scope.potluck);
 		fetch();

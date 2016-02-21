@@ -10,56 +10,58 @@ html(lang="en")
             form(name='potluckForm', ng-submit='submitForm()', novalidate='', method='post' action='')
               // NAME
               // insert ng-form here
-              .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
-                label Item Name
-                input.form-control(type='text', name='name', ng-model='potluck.name', required='')
-                p.help-block(ng-show='potluckForm.name.$invalid && !potluckForm.name.$pristine') Item Name is required.
-              // FOOD TYPE
-              .form-group(ng-class="{ 'has-error' : potluckForm.type.$invalid && !potluckForm.type.$pristine }")
-                label Item Type
-                select.form-control(type='select', name='type', ng-model='potluck.type', required='')
-                  option(value='drinkAlchoholic') Drink – Alcoholic
-                  option(value='drinkNonAlchoholic') Drink – Non-Alcoholic
-                  option(value='foodPasta') Pasta Dish
-                  option(value='foodPotato') Potato Dish
-                  option(value='foodMeat') Meat Dish
-                  option(value='foodVeggie') Veggie Dish
-                  option(value='foodRice') Rice Dish
-                  option(value='foodDessert') Dessert
-                p.help-block(ng-show='potluckForm.type.$invalid && !potluckForm.type.$pristine') Enter a valid email.
-              // SERVINGS
-              .form-group(ng-class="{ 'has-error' : potluckForm.servings.$invalid && !potluckForm.servings.$pristine }")
-                label Servings (approximate)
-                select.form-control(type='select', name='servings', ng-model='potluck.servings', required='')
-                  option(value='10') 10
-                  option(value='20') 20
-                  option(value='30') 30
-                  option(value='40') 40
-                  option(value='50') 50
-                  option(value='60') 60
-                  option(value='70') 70
-                  option(value='80') 80
-                  option(value='90') 90
-                  option(value='100') 100
-                  option(value='120') 120
-                  option(value='140') 140
-                  option(value='150') 150+
-                p.help-block(ng-show='potluckForm.servings.$invalid && !potluckForm.servings.$pristine') Enter a valid email.
-              // ALLERGIES
-              label Allergies / Warnings
-              .form-group
-                div(ng-repeat='(allergy, selected) in potluck.allergies')
-                  label
-                    input(type='checkbox', value='{{allergy}}', ng-model='potluck.allergies[allergy]' ng-change='sync(allergies, potluck.allergies)').
-                    span {{ allergy }}
-                p.
-                  {{ allergies }}
+              div(ng-repeat='item in items')
+                ng-form(name='itemForm')
+                  .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
+                    label Item Name
+                    input.form-control(type='text', name='name', ng-model='item.name', required='')
+                    p.help-block(ng-show='potluckForm.name.$invalid && !potluckForm.name.$pristine') Item Name is required.
+                  .form-group(ng-class="{ 'has-error' : potluckForm.type.$invalid && !potluckForm.type.$pristine }")
+                    label Item Type
+                    select.form-control(type='select', name='type', ng-model='item.type', required='')
+                      option(value='drinkAlchoholic') Drink – Alcoholic
+                      option(value='drinkNonAlchoholic') Drink – Non-Alcoholic
+                      option(value='foodPasta') Pasta Dish
+                      option(value='foodPotato') Potato Dish
+                      option(value='foodMeat') Meat Dish
+                      option(value='foodVeggie') Veggie Dish
+                      option(value='foodRice') Rice Dish
+                      option(value='foodDessert') Dessert
+                    p.help-block(ng-show='potluckForm.type.$invalid && !potluckForm.type.$pristine') Enter a valid email.
+                  .form-group(ng-class="{ 'has-error' : potluckForm.servings.$invalid && !potluckForm.servings.$pristine }")
+                    label Servings (approximate)
+                    select.form-control(type='select', name='servings', ng-model='item.servings', required='')
+                      option(value='10') 10
+                      option(value='20') 20
+                      option(value='30') 30
+                      option(value='40') 40
+                      option(value='50') 50
+                      option(value='60') 60
+                      option(value='70') 70
+                      option(value='80') 80
+                      option(value='90') 90
+                      option(value='100') 100
+                      option(value='120') 120
+                      option(value='140') 140
+                      option(value='150') 150+
+                    p.help-block(ng-show='potluckForm.servings.$invalid && !potluckForm.servings.$pristine') Enter a valid email.
+                  .form-group
+                    div(ng-repeat='(allergy, selected) in item.allergies')
+                      label
+                        input(type='checkbox', value='{{allergy}}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
+                        span {{ allergy }}
+                    p.
+                      {{ allergies }}
+                  .form-group
+                    label Item Notes
+                    input.form-control(type='text', name='notes', ng-model='item.notes')
+                  button(ng-click='nix(indexOf(item))' href="#" onclick="return false;").
+                    Remove
+
               // Notes
-              .form-group
-                label Item Notes
-                input.form-control(type='text', name='notes', ng-model='potluck.notes')
+              
               button(ng-disabled='potluckForm.$invalid', ng-click='submit()' href="#" onclick="return false;").
                 Submit
               p.
-                {{ potluck }}
+                {{ items }}
               
