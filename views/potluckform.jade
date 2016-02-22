@@ -44,8 +44,8 @@ html(lang="en")
               .form-group
                 label Allergies
                 div(ng-repeat='(allergy, selected) in item.allergies')
-                  input(type='checkbox', id='{{ allergy }}' value='{{ allergy }}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
-                  label(for='{{ allergy }}') {{ allergy }}
+                  input(type='checkbox', id='{{ allergy }}{{ $parent.$index }}' value='{{ allergy }}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
+                  label(for='{{ allergy }}{{ $parent.$index }}') {{ allergy }}
               .form-group
                 label Item Notes
                 input(type='text', name='notes', ng-model='item.notes')
