@@ -1,7 +1,8 @@
 body{
 	background-color:$blue-dk;
 	font:normal lighter 14px/18px $sans;
-	color:white
+	color:blue;
+	text-align: center;
 }
 h1{
 	color:$green;
@@ -47,7 +48,7 @@ button::-moz-focus-inner {
     padding: 0;
 }
 button{
-	background-color:white;
+	background-color:$gray-lt;
 	color:$blue-dk;
 	padding:15px 30px;
 	border-radius:5px;
@@ -55,4 +56,15 @@ button{
 }
 button:hover{
 	background-color:$blue-lt;
+}
+button.add{
+}
+
+/* main container */
+div.main{
+	display:inline-block;
+	margin:0 auto;
+	width:100%;
+	max-width: 640px;
+	background-color:white;
 }

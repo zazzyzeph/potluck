@@ -94,7 +94,7 @@ guestsRouter.post('/:user_id', function(req,res){
             if (err){
                 // if duplicate
                 if (err.code == 11000)
-                    return res.json({success:false, message: 'Sorry, you can\'t have duplicate item names.'});
+                    return res.json({success:false, message: 'duplicate id error, sorry :('});
                 else
                     return res.send(err);
             }
