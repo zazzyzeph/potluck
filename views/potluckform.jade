@@ -42,10 +42,10 @@ html(lang="en")
                 option(value='150') 150+
               p.help-block(ng-show='potluckForm.servings.$invalid && !potluckForm.servings.$pristine') Select an amount of servings
             .form-group
+              label Allergies
               div(ng-repeat='(allergy, selected) in item.allergies')
-                label
-                  input(type='checkbox', value='{{allergy}}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
-                  span {{ allergy }}
+                input(type='checkbox', id='{{allergy}}' value='{{allergy}}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
+                label(for='{{allergy}}') {{ allergy }}
             .form-group
               label Item Notes
               input(type='text', name='notes', ng-model='item.notes')

@@ -12,3 +12,47 @@ h2{
 p{
 	color:$blue;
 }
+input[type=checkbox] { visibility: hidden; } /* to hide the checkbox itself */
+input[type=checkbox] + label:before {
+  font-family: Ionicons;
+  display: inline-block;
+}
+
+input[type=checkbox] + label:before { content: "\f372"; } /* unchecked icon */
+input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
+
+input[type=checkbox]:checked + label:before { content: "\f373"; } /* checked icon */
+input[type=checkbox]:checked + label:before { letter-spacing: 10px; } /* allow space for check mark */
+
+/* Buttons */
+
+/* reset */
+button {
+    background: none;
+    border: 0;
+    color: inherit;
+    cursor: pointer; 
+    font: inherit;
+    line-height: normal;
+    overflow: visible;
+    padding: 0;
+    -webkit-appearance: button; /* for input */
+    -webkit-user-select: none; /* for button */
+       -moz-user-select: none;
+        -ms-user-select: none;
+}
+input::-moz-focus-inner,
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+button{
+	background-color:white;
+	color:$blue-dk;
+	padding:15px 30px;
+	border-radius:5px;
+	font-weight:bold;
+}
+button:hover{
+	background-color:$blue-lt;
+}

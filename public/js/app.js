@@ -25,7 +25,7 @@ potluckValidation.controller('potluckController', function($scope, $http, $locat
 			$scope.items = [{
 							name:"",
 							type:"",
-							servings:0,
+							servings:null,
 							allergies:{'Non-Vegan':false,'Non-Vegetarian':false,'Dairy':false,'Nuts':false,'Gluten':false,'Egg':false,'Tropical Fruit':false},
 							notes:""
 						}];
