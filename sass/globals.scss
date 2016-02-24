@@ -1,7 +1,7 @@
 body{
 	background-color:$blue-dk;
 	font:normal lighter 14px/18px $sans;
-	color:blue;
+	color:$blue;
 	text-align: center;
 }
 h1{
@@ -13,15 +13,16 @@ h2{
 p{
 	color:$blue;
 }
+
+/* Checkbox Replacement */
+
 input[type=checkbox] { visibility: hidden; } /* to hide the checkbox itself */
 input[type=checkbox] + label:before {
   font-family: Ionicons;
   display: inline-block;
 }
-
 input[type=checkbox] + label:before { content: "\f372"; } /* unchecked icon */
 input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
-
 input[type=checkbox]:checked + label:before { content: "\f373"; } /* checked icon */
 input[type=checkbox]:checked + label:before { letter-spacing: 10px; } /* allow space for check mark */
 
@@ -58,6 +59,11 @@ button:hover{
 	background-color:$blue-lt;
 }
 button.add{
+	background-color:$green;
+}
+button.remove{
+	background-color:$red;
+	color:white;
 }
 
 /* main container */
@@ -66,5 +72,41 @@ div.main{
 	margin:0 auto;
 	width:100%;
 	max-width: 640px;
+}
+/* Item Container */
+.potluckitem{
+	margin-top:15px;
 	background-color:white;
+	border-radius: 20px;
+}
+
+/* Form Styles */
+
+input[type="text"]{
+	width:40%;
+	background:$blue-lt;
+	color:white;
+	border:0;
+	outline:0;
+	border-radius: 3px;
+	height:30px;
+	padding:10px;
+	margin-left:15px;
+}
+select[type="select"]{
+	width:40%;
+	background:$blue-lt;
+	color:white;
+	border:0;
+	outline:0;
+	border-radius: 3px;
+	height:30px;
+	padding:10px;
+	margin-left:15px;
+}
+label{
+	display: inline-block;
+	width:115px;
+	text-align: left;
+
 }

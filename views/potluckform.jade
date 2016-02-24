@@ -6,7 +6,7 @@ html(lang="en")
       .main
         // FORM ============
         form(name='potluckForm', ng-submit='submitForm()', novalidate='', method='post' action='')
-          div(ng-repeat='item in items track by $index')
+          div.potluckitem(ng-repeat='item in items track by $index')
             ng-form(name='itemForm')
               .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
                 label Item Name

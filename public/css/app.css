@@ -2,7 +2,7 @@
 body {
   background-color: #025373;
   font: normal lighter 14px/18px "Noto Sans", "Helvetica Neue", sans-serif;
-  color: blue;
+  color: #0583F2;
   text-align: center; }
 
 h1 {
@@ -14,6 +14,7 @@ h2 {
 p {
   color: #0583F2; }
 
+/* Checkbox Replacement */
 input[type=checkbox] {
   visibility: hidden; }
 
@@ -71,10 +72,50 @@ button {
 button:hover {
   background-color: #97AAF1; }
 
+button.add {
+  background-color: #BDD959; }
+
+button.remove {
+  background-color: #ee5555;
+  color: white; }
+
 /* main container */
 div.main {
   display: inline-block;
   margin: 0 auto;
   width: 100%;
-  max-width: 640px;
-  background-color: white; }
+  max-width: 640px; }
+
+/* Item Container */
+.potluckitem {
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 20px; }
+
+/* Form Styles */
+input[type="text"] {
+  width: 40%;
+  background: #97AAF1;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 3px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 15px; }
+
+select[type="select"] {
+  width: 40%;
+  background: #97AAF1;
+  color: white;
+  border: 0;
+  outline: 0;
+  border-radius: 3px;
+  height: 30px;
+  padding: 10px;
+  margin-left: 15px; }
+
+label {
+  display: inline-block;
+  width: 115px;
+  text-align: left; }
