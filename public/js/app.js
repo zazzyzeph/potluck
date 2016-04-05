@@ -1,6 +1,6 @@
 // create angular app
-var indexValidation = angular.module('indexValidation', []);
-var potluckValidation = angular.module('potluckValidation', []);
+var indexValidation = angular.module('indexValidation', ['ngAnimate']);
+var potluckValidation = angular.module('potluckValidation', ['ngAnimate']);
 
 // create angular controller
 indexValidation.controller('mainController', function($scope) {
@@ -9,7 +9,7 @@ indexValidation.controller('mainController', function($scope) {
 	$scope.submitForm = function() {
 		// check to make sure the form is completely valid
 		if (!($scope.userForm.$valid)) {
-			alert('form is invalid. stop trying to hack my site.');
+			alert('form is invalid. y u hackin.');
 		}
 	};
 });
@@ -42,7 +42,7 @@ potluckValidation.controller('potluckController', function($scope, $http, $locat
 			alert('form is invalid. stop trying to hack my site.');
 		}
 	};
-	$scope.nix = function(index){
+	$scope.nixItem = function(index){
 		$scope.items.splice(index,1);
 	}
 	$scope.addItem = function(){

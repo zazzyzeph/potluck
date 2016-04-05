@@ -6,7 +6,7 @@ html(lang="en")
       .main
         // FORM ============
         form(name='potluckForm', ng-submit='submitForm()', novalidate='', method='post' action='')
-          div.potluckitem(ng-repeat='item in items track by $index')
+          div.potluckitem(ng-repeat='item in items track by $index' ng-animate=' "animate" ')
             ng-form(name='itemForm')
               .form-group(ng-class="{ 'has-error' : potluckForm.name.$invalid && !potluckForm.name.$pristine }")
                 label Item Name
@@ -41,19 +41,19 @@ html(lang="en")
                   option(value='140') 140
                   option(value='150') 150+
                 p.help-block(ng-show='potluckForm.servings.$invalid && !potluckForm.servings.$pristine') Select an amount of servings
-              .form-group
-                label Allergies
+              .form-group.checkgroup
+                label.allergies Allergies
                 div(ng-repeat='(allergy, selected) in item.allergies')
                   input(type='checkbox', id='{{ allergy }}{{ $parent.$index }}' value='{{ allergy }}', ng-model='item.allergies[allergy]' ng-change='sync(allergies, item.allergies)').
                   label(for='{{ allergy }}{{ $parent.$index }}') {{ allergy }}
               .form-group
                 label Item Notes
                 input(type='text', name='notes', ng-model='item.notes')
-              button.remove(ng-click='nix($index)', ng-disabled='items.length === 1', href='#', onclick="return false;").
+              button.btn.remove(ng-click='nixItem($index)', ng-disabled='items.length === 1', href='#', onclick="return false;").
                 Remove Item
-
-          button.add(ng-click='addItem()', href='#', onclick='return false').
-            Add Item
-          button.submit(ng-disabled='potluckForm.$invalid', ng-click='submit()', href='#', onclick="return false;").
-            Submit
+          .bottom-buttons
+            button.btn.add(ng-click='addItem()', href='#', onclick='return false').
+              Add Item
+            button.btn.submit(ng-disabled='potluckForm.$invalid', ng-click='submit()', href='#', onclick="return false;").
+              Submit
               

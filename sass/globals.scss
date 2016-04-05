@@ -1,5 +1,10 @@
 body{
-	background-color:$blue-dk;
+	-webkit-transition: 1s linear all; /* Chrome */
+	transition: 1s linear all;
+	background-image:url('http://media.giphy.com/media/13bGgH9VnEDsuA/giphy.gif');
+	background-size:cover;
+	background-position:center center;
+	background-attachment:fixed;
 	font:normal lighter 14px/18px $sans;
 	color:$blue;
 	text-align: center;
@@ -16,54 +21,92 @@ p{
 
 /* Checkbox Replacement */
 
+
+
 input[type=checkbox] { visibility: hidden; } /* to hide the checkbox itself */
 input[type=checkbox] + label:before {
-  font-family: Ionicons;
-  display: inline-block;
+	font-family: Ionicons;
+	display: inline-block;
+	content: "\f372";
+	letter-spacing: 10px;
+	position:absolute;
+	margin-left:-25px;
+	vertical-align: middle;
+	font-size:18px;
 }
-input[type=checkbox] + label:before { content: "\f372"; } /* unchecked icon */
-input[type=checkbox] + label:before { letter-spacing: 10px; } /* space between checkbox and label */
-input[type=checkbox]:checked + label:before { content: "\f373"; } /* checked icon */
-input[type=checkbox]:checked + label:before { letter-spacing: 10px; } /* allow space for check mark */
+input[type=checkbox]:checked + label:before {
+	content: "\f373"; 
+} /* checked icon */
+input[type=checkbox]:checked + label:before {
+	letter-spacing: 10px; 
+} /* allow space for check mark */
+
+
+
+.ng-enter{
+	transition:0.5s ease-in all;
+	opacity: 0;
+	max-height:-100px;
+}
+
+.ng-enter-active{
+	opacity: 1;
+	max-height:999px;
+}
+
+.ng-leave{
+	transition:0.5s ease-in all;
+	opacity: 1;
+	max-height:999px;
+}
+
+.ng-leave-active{
+	opacity: 0;
+	max-height:-100px;
+}
+
 
 /* Buttons */
 
 /* reset */
 button {
-    background: none;
-    border: 0;
-    color: inherit;
-    cursor: pointer; 
-    font: inherit;
-    line-height: normal;
-    overflow: visible;
-    padding: 0;
-    -webkit-appearance: button; /* for input */
-    -webkit-user-select: none; /* for button */
-       -moz-user-select: none;
-        -ms-user-select: none;
+	display:block;
+	background: none;
+	border: 0;
+	color: inherit;
+	cursor: pointer; 
+	font: inherit;
+	line-height: normal;
+	overflow: visible;
+	padding: 0;
+-webkit-appearance: button; /* for input */
+-webkit-user-select: none; /* for button */
+-moz-user-select: none;
+-ms-user-select: none;
+background-color:$gray-lt;
+color:$blue-dk;
+font-weight:bold;
 }
 input::-moz-focus-inner,
 button::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-button{
-	background-color:$gray-lt;
-	color:$blue-dk;
-	padding:15px 30px;
-	border-radius:5px;
-	font-weight:bold;
+	border: 0;
+	padding: 0;
 }
 button:hover{
 	background-color:$blue-lt;
 }
 button.add{
+	color:white;
 	background-color:$green;
+}
+button.add:hover{
+	background-color:darken($green, 20%);
+	color:darken(white, 20%);
 }
 button.remove{
 	background-color:$red;
 	color:white;
+	margin-top:20px;
 }
 
 /* main container */
@@ -71,16 +114,51 @@ div.main{
 	display:inline-block;
 	margin:0 auto;
 	width:100%;
-	max-width: 640px;
+	max-width: 440px;
+}
+@media screen and (max-width:460px){
+	div.potluckitem{
+		margin-left: 15px;
+		margin-right: 15px;
+		min-width:290px;
+	}
 }
 /* Item Container */
 .potluckitem{
-	margin-top:15px;
-	background-color:white;
-	border-radius: 20px;
+	height:auto;
+	overflow:hidden;
+	padding:60px 20px;
+	width:auto;
+	border-radius: 1%;
+	margin-bottom:10px;
+	-webkit-box-shadow: 0px 9px 94px -12px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 9px 94px -12px rgba(0,0,0,0.75);
+	box-shadow: 0px 9px 94px -12px rgba(0,0,0,0.75);
+	background:rgba(255,255,255,0.8)
+}
+
+.potluckitem:first-child{
+	margin-top:30px;
+}
+.potluckitem:last-child{
+	margin-bottom:30px;
+}
+
+.checkgroup .ng-scope{
+	margin-left:27px;
+}
+
+.allergies{
+	text-align: center;
+	border-bottom:1px solid $blue;
+	padding-bottom:10px;
+	margin-bottom:10px;
 }
 
 /* Form Styles */
+input[type="text"], select{
+	box-shadow: 1px 1px 10px -2px rgba(0,0,0,0.3);
+}
 
 input[type="text"]{
 	width:40%;
@@ -88,7 +166,7 @@ input[type="text"]{
 	color:white;
 	border:0;
 	outline:0;
-	border-radius: 3px;
+	border-radius: 5%;
 	height:30px;
 	padding:10px;
 	margin-left:15px;
@@ -99,7 +177,7 @@ select[type="select"]{
 	color:white;
 	border:0;
 	outline:0;
-	border-radius: 3px;
+	border-radius: 5%;
 	height:30px;
 	padding:10px;
 	margin-left:15px;
@@ -108,5 +186,20 @@ label{
 	display: inline-block;
 	width:115px;
 	text-align: left;
+	font-size:16px;
+	line-height:auto;
+	text-transform: uppercase;
+	vertical-align: middle;
+	text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+	color:white;
+}
 
+.animate-enter {
+	-webkit-transition: 1s linear all; /* Chrome */
+	transition: 1s linear all;
+	opacity: 0;
+}
+
+.animate-enter.animate-enter-active {
+	opacity: 1;
 }
