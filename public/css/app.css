@@ -93,7 +93,8 @@ button:hover {
 
 button.add {
   color: white;
-  background-color: #BDD959; }
+  background-color: #BDD959;
+  margin-right: 20px; }
 
 button.add:hover {
   background-color: #8aa626;
@@ -190,3 +191,7 @@ label {
 
 .animate-enter.animate-enter-active {
   opacity: 1; }
+
+.bottom-buttons {
+  margin-top: 24px;
+  margin-bottom: 46px; }

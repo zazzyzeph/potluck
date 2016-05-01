@@ -73,7 +73,6 @@ guestsRouter.get('/:user_id', function(req,res){
     // get the user with that id
     User.findById(req.params.user_id, function(err, user){
     if (err) res.send(err);
-
     //return their potluckform
     res.render('potluckform');
     });
@@ -125,7 +124,7 @@ guestsRouter.post('/', function(req,res){
                 service: 'gmail',
                 auth: {
                     user: 'thewhistlego@gmail.com',
-                    // pass: 'skele'
+                    pass: 'osadfgmsrfs!'
                 }
             }, {
                 // default values for sendMail method
@@ -154,7 +153,3 @@ app.use('/guests', guestsRouter);
 app.listen(port);
 console.log('localhost:' + port + ' for the homepage, /guests for the api!');
 
-
-//  FLOW
-// potluck.biz => input email address and name via x-encoded form
-// 

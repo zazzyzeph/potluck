@@ -2,7 +2,6 @@
 var indexValidation = angular.module('indexValidation', ['ngAnimate']);
 var potluckValidation = angular.module('potluckValidation', ['ngAnimate']);
 
-// create angular controller
 indexValidation.controller('mainController', function($scope) {
 	// function to submit the form after all validation has occurred			
 	$scope.submitForm = function() {
@@ -13,7 +12,6 @@ indexValidation.controller('mainController', function($scope) {
 	};
 });
 
-// create angular controller
 potluckValidation.controller('potluckController', function($scope, $http, $location) {
 	$http.get($location.absUrl() + '/items').then(function successCallback(res){
 		console.log(res.data);
