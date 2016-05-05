@@ -1,0 +1,12 @@
+form(name='userForm', ng-submit='submitForm()', novalidate='', method='post', action='/guests')
+  // NAME
+  .form-group(ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }")
+    label Name
+    input.form-control(type='text', name='name', ng-model='user.name', required='')
+    p.help-block(ng-show='userForm.name.$invalid && !userForm.name.$pristine') Your name is required ;)
+  // EMAIL
+  .form-group(ng-class="{ 'has-error' : userForm.email.$invalid && !userForm.email.$pristine }")
+    label Email
+    input.form-control(type='email', name='email', ng-model='user.email')
+    p.help-block(ng-show='userForm.email.$invalid && !userForm.email.$pristine') Enter a valid email.
+  button.btn.btn-primary(type='submit', ng-disabled='userForm.$invalid') Submit
